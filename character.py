@@ -14,6 +14,6 @@ class character(object):
         pass
 
     def update(self):
-        if self.hp < 0:
+        if self.hp <= 0:
             self.dead = True
             
