@@ -84,7 +84,8 @@ class CardChallenge:
 	def deal_cards(self, deck):
 		return self.deck.pop(0)
 	
-
+	def getLuckStatus(self):
+		return self.luck
 		
 		#Reveal opponent's hand
 	def revealOpponent(self):
@@ -427,4 +428,4 @@ class CardChallenge:
 			elif self.myScore < self.opponentScore:
 				self.gameOutcome.set("Too bad. Maybe next time.")
 		self.button2.config(state = "disabled")		
-CardChallenge()
+#CardChallenge()
