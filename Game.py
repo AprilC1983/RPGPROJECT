@@ -176,7 +176,7 @@ name = SetName()
 player = Character(name.getName(), charType.getType(), charType.getHP(), charType.getATK())
 dragon = Dragon()
 main = mainFrame("")
-while dragon.getHP() != 0 and player.getHP() != 0:
+while dragon.getHP() != 0 and player.getHP() != 0 and main.getTrial() != 99:
 	if main.getTrial() == 1:
 		string = ""
 		diamond = DiamondDefense()
