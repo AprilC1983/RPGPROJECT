@@ -1,6 +1,6 @@
-# Name:		InvestmentCalculator
-# Purpose:	Calculates the future value of an investment
-# Date:		November 5, 2015
+# Name:		SetName
+# Purpose:	Prompts the user for their name
+# Date:		November 30, 2015
 # Author:	April May
 
 from tkinter import *
@@ -10,12 +10,12 @@ class SetName:
 		window = Tk()
 		window.title("Tell us your name")
 		
-		Label(window, text = "What should we call you? Enter your name below.").grid(row = 1, column = 1, sticky = W)
+		Label(window, text = "What should we call you? Enter your name below.").pack()
 		
 		self.entry = StringVar()
-		Entry(window, textvariable = self.entry, justify = RIGHT).grid(row = 2, column = 1)
+		Entry(window, textvariable = self.entry, justify = RIGHT).pack()
 		
-		btOK = Button(window, text = "OK", command = window.destroy).grid(row = 3, column = 1, sticky = E)
+		btOK = Button(window, text = "OK", command = window.destroy).pack()
 		
 		window.mainloop()
 		
