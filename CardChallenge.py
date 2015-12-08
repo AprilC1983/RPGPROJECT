@@ -44,7 +44,8 @@ class CardChallenge:
 		self.button2.pack()
 		
 		self.gameOutcome = StringVar()
-		lblFutureValue = Label(window, textvariable = self.gameOutcome)
+		self.lblOutcome = Label(self.window, textvariable = self.gameOutcome)
+		self.lblOutcome.pack()
 		
 		self.closeButton = Button(self.window, text="Exit", state=NORMAL, command=self.window.destroy)
 		self.closeButton.pack()
@@ -54,7 +55,7 @@ class CardChallenge:
 		self.cardImages = []
 		for i in range(1, 53):
 			self.cardImages.append(PhotoImage(file = "cards/" + str(i) + ".png"))
-			
+		
 		
 		self.window.mainloop()
 		
@@ -247,7 +248,13 @@ class CardChallenge:
 			elif self.define_cards(card) == "king of clubs":
 				self.labelList1[i]["image"] = self.cardImages[51]
 				self.opponentScore += 13
-					
+				
+		if self.button2["state"] == "disabled":
+			if self.myScore > self.opponentScore:
+				self.gameOutcome.set("You won!")
+				self.luck = 1
+			elif self.myScore < self.opponentScore:
+				self.gameOutcome.set("Too bad. Maybe next time.")		
 		
 		self.button1.config(state = "disabled")
 		
@@ -413,6 +420,11 @@ class CardChallenge:
 			elif self.define_cards(card) == "king of clubs":
 				self.labelList2[i]["image"] = self.cardImages[51]
 				self.myScore += 13
-			
+		if self.button1["state"] == "disabled":
+			if self.myScore > self.opponentScore:
+				self.gameOutcome.set("You won!")
+				self.luck = 1
+			elif self.myScore < self.opponentScore:
+				self.gameOutcome.set("Too bad. Maybe next time.")
 		self.button2.config(state = "disabled")		
 CardChallenge()
