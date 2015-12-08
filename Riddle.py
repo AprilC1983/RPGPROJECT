@@ -2,31 +2,38 @@
 # Purpose:	Asks the user a riddle
 # Date:		November 29, 2015
 # Author:	April May
-#Bugs:		Fix layout
+# Bugs:		
 
 from tkinter import *
 
 class Riddle:
 	def __init__(self):
-		trial2 = Tk()
-		trial2.title("Riddle me this")
+		self.trial2 = Tk()
+		self.trial2.title("Riddle me this")
 		
-		Label(trial2, text = "I am greater than God\nMore evil than the devil\nThe poor have me\n The rich need me\nIf you eat me you will die\nWhat am I?").grid(row = 1, column = 1, sticky = W)
+		self.hammer = 0
+		
+		Label(self.trial2, text = "I am greater than God\nMore evil than the devil\nThe poor have me\n The rich need me\nIf you eat me you will die\nWhat am I?").pack()
 		
 		self.riddleAnswer = StringVar()
-		Entry(trial2, textvariable = self.riddleAnswer, justify = RIGHT).grid(row = 1, column = 2)
+		Entry(self.trial2, textvariable = self.riddleAnswer, justify = RIGHT).pack()
 		
-		self.result = StringVar()
-		lblResult = Label(trial2, textvariable = self.result).grid(row = 4, column = 2, sticky = E)
+#		self.result = StringVar()
+#		lblResult = Label(self.trial2, textvariable = self.result).pack()
 		
-		btCalculate = Button(trial2, text = "Answer the riddle", command = self.calculate).grid(row = 5, column = 2, sticky = E)
+		btnAnswer = Button(self.trial2, text = "Answer the riddle", command = self.answerRiddle).pack()
 		
-		trial2.mainloop()
+		self.trial2.mainloop()
 		
-	def calculate(self):
+	def answerRiddle(self):
 		riddleAnswer = self.riddleAnswer.get()
 		if riddleAnswer.lower() == 'nothing':
-			self.result.set("Correct!")
+#			self.result.set("Correct!")
+			self.hammer = 1
+			self.trial2.destroy()
 		else:
-			self.result.set("Sorry, that wasn't the right answer.")
-Riddle()
+#			self.result.set("Sorry, that wasn't the right answer.")
+			self.trial2.destroy()
+	def getHammer(self):
+		return self.hammer
+#Riddle()
