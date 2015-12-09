@@ -3,6 +3,7 @@
 # Date:		November 30, 2015
 # Author:	April May
 
+
 from tkinter import *
 
 class SetName:
@@ -13,7 +14,10 @@ class SetName:
 		Label(window, text = "What should we call you? Enter your name below.").pack()
 		
 		self.entry = StringVar()
-		Entry(window, textvariable = self.entry, justify = RIGHT).pack()
+		self.entryWindow = Entry(window, textvariable = self.entry, justify = RIGHT)
+		self.entryWindow.pack()
+		self.entryWindow.focus_set()
+
 		
 		btOK = Button(window, text = "OK", command = window.destroy).pack()
 		
