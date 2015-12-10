@@ -2,7 +2,8 @@
 # Purpose:	Similar to Battleship, allows user to guess location of Defense Diamond
 # Date:		November 27, 2015
 # Authors:	April May
-# Unresolved bugs: Board not refreshing
+#Bugs:		Note to self, remove print statement when finished with testing
+
 
 from random import randint
 from tkinter import *
@@ -10,76 +11,131 @@ from tkinter import *
 class DiamondDefense:
 	def __init__(self):
 	
-		self.window = Tk()
-		self.window.title("Diamond Defense")
+		window = Tk()
+		window.title("Diamond Defense")
 			
-		self.board = []
+		self.buttons = []
 	
+		
+		Label(window, text = "Pick a floor tile to rip up!\nYou have 3 guesses.").pack()
+		
+		frame = Frame(window)
+		frame.pack()
+		
+		tile = PhotoImage(file = "tile.png")
+		self.diamond = PhotoImage(file = "diamond2.png")
+		
+		button1 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button1)
+		button2 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button2)
+		button3 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button3)
+		button4 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button4)
+		button5 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button5)
+		button6 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button6)
+		button7 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button7)
+		button8 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button8)
+		button9 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button9)
+		button10 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button10)
+		button11 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button11)
+		button12 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button12)
+		button13 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button13)
+		button14 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button14)
+		button15 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button15)
+		button16 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button16)
+		button17 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button17)
+		button18 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button18)
+		button19 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button19)
+		button20 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button20)
+		button21 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button21)
+		button22 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button22)
+		button23 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button23)
+		button24 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button24)
+		button25 = Button(frame, image = tile, command = self.check)
+		self.buttons.append(button25)
 		for x in range(5):
-			self.board.append(["[*]"] * 5)
+			self.buttons[x].grid(row = 1, column = x + 2)
+		for x in range(5, 10):
+			self.buttons[x].grid(row = 2, column = (x - 3))
+		for x in range(10, 15):
+			self.buttons[x].grid(row = 3, column = (x - 8))
+		for x in range(15, 20):
+			self.buttons[x].grid(row = 4, column = (x - 13))
+		for x in range(20, 25):
+			self.buttons[x].grid(row = 5, column = (x - 18))
+			
+		frame2 = Frame(window)
+		frame2.pack()
 		
-		Label(self.window, text = "Pick a floor tile to rip up!").grid(row = 1, column = 2, sticky = W)
-		Label(self.window, text = "Row: ").grid(row = 2, column = 1, sticky = W)
-		Label(self.window, text = "Column: ").grid(row = 3, column = 1, sticky = W)
-		Label(self.window, text = "Guesses Taken: ").grid(row = 10, column = 1, sticky = W)
-		self.__row1 = Label(self.window, text = " ".join(self.board[0])).grid(row = 5, column = 1, sticky = W)
-		self.__row2 = Label(self.window, text = " ".join(self.board[1])).grid(row = 6, column = 1, sticky = W)
-		self.__row3 = Label(self.window, text = " ".join(self.board[2])).grid(row = 7, column = 1, sticky = W)
-		self.__row4 = Label(self.window, text = " ".join(self.board[3])).grid(row = 8, column = 1, sticky = W)
-		self.__row5 = Label(self.window, text = " ".join(self.board[4])).grid(row = 9, column = 1, sticky = W)
-		
-		self.__result = StringVar()
-		Entry(self.window, textvariable = self.__result, justify = RIGHT).grid(row = 9, column = 2)
-		self.__guess_row = StringVar()
-		Entry(self.window, textvariable = self.__guess_row, justify = RIGHT).grid(row = 2, column = 2)
-		self.__guess_col = StringVar()
-		Entry(self.window, textvariable = self.__guess_col, justify = RIGHT).grid(row = 3, column = 2)
 		self.__guesses = StringVar()
-		Entry(self.window, textvariable = self.__guesses, justify = RIGHT).grid(row = 10, column = 2)
+		Label(frame2, textvariable = self.__guesses).pack()
 		
-		btCheck = Button(self.window, text = "Rip it up!", command = self.check).grid(row = 4, column = 2, sticky = E)
+		self.__outcome = StringVar()
+		Label(frame2, textvariable = self.__outcome).pack()
+		
+		Button(window, text = "Exit", command = window.destroy).pack()
 	
 		self.__diamond = 0
-	
-
-		def random_row(board):
-			return randint(0, len(board) - 1)
-
-		def random_col(board):
-			return randint(0, len(board[0]) - 1)
-
-		self.diamond_row = random_row(self.board)
-		self.diamond_col = random_col(self.board)
-		print (self.diamond_row)
-		print (self.diamond_col)
+		
+		self.diamond_tile = self.random_row(self.buttons)
+		print (self.diamond_tile)
+		self.buttons[self.diamond_tile].config(command = self.victory)
 		self.turn = 0
 		
-		self.window.mainloop()
-		
-	def check(self):
+		window.mainloop()
+	
 
-		self.__row = int(self.__guess_row.get()) - 1
-		self.__col = int(self.__guess_col.get()) - 1
+	def random_row(self, board):
+		return randint(0, len(board) - 1)
 
-		if self.__row == self.diamond_row and self.__col == self.diamond_col:
-			self.__diamond = 1
-		else:
-			if self.__row < 0 or self.__row > 4 or self.__col < 0 or self.__col > 4:
-				self.__result.set("Sorry, you can only search in this room..")
-			elif(self.board[self.__row][self.__col] == " X "):
-				self.__result.set("You pulled that one up already.")
-			else:
-				self.__result.set("Nope, it isn't there!!")
-				self.board[self.__row][self.__col] = " X "
-				self.turn += 1
-           
-			if self.turn == 3:
-				self.window.destroy()
-				
-		self.__guesses.set(str(self.turn))
-		self.__guess_row.set('')
-		self.__guess_col.set('')
-		
+	
 	def getDiamondStatus(self):
 		return self.__diamond
-			
+	
+	def check(self):
+		pass
+		self.turn += 1
+		self.__guesses.set("Guesses Taken: " + str(self.turn))
+		if self.turn >= 3:
+			self.__outcome.set("Aw, rats! Maybe next time.")
+			for x in self.buttons:
+				x.config(state = "disabled")
+	
+	def blank(self):
+		pass
+		
+	def victory(self):
+		self.__diamond += 1
+		self.turn += 1
+		self.__guesses.set("Guesses Taken: " + str(self.turn))
+		self.buttons[self.diamond_tile].config(image = self.diamond)
+		self.__outcome.set("Victory! You found it!")
+		for x in self.buttons:
+				x.config(state = "disabled")
+		self.buttons[self.diamond_tile].config(state = "normal")
+		self.buttons[self.diamond_tile].config(command = self.blank)
+		
+	
+#DiamondDefense()
