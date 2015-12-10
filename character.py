@@ -8,6 +8,7 @@ class Character:#(object):
 		self.name = name
 		self.type = type
 		self.hp = hp
+		self.maxHP = hp
 		self.atk = atk
 		self.luck = 0
 		self.defense = 0
@@ -32,7 +33,7 @@ class Character:#(object):
 	def setAttack(self):
 		self.atk += 999
 	def heal(self):
-		self.hp -= 5
+		self.hp -= 7
 		
 	def getNameame(self):
 		return self.name
@@ -40,6 +41,8 @@ class Character:#(object):
 		return self.type
 	def getHP(self):
 		return self.hp
+	def getMaxHP(self):
+		return self.maxHP
 	def getATK(self):
 		return self.atk
 	def getLuck(self):
