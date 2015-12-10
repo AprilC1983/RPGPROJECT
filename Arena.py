@@ -103,9 +103,13 @@ class Arena:
 		self.btnDefense.config(state = "disabled")
 		
 	def chance(self):
-		num = randint(0, 4)
-		for x in range(num):
-			player.heal()
+		num = randint(1, 7)
+		for x in range(3):
+			if self.player.getHP() >= self.player.getMaxHP():
+				self.player.heal()
+				self.canvas.delete("playerHP")
+				self.canvas.create_rectangle(25, 200, 35, self.player.getHP(), fill = "green", tags = "playerHP")
+		self.btnLuck.config(state = "disabled")
 		
 	def animate(self):
 		while not self.isStopped:
@@ -133,3 +137,4 @@ class Arena:
 	def getWinner(self):
 		return self.winner
 		
+#Arena()
