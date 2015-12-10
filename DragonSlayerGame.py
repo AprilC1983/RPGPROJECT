@@ -20,12 +20,12 @@ class Home:  #create tkinter GUI class for RPG
 	def __init__(self, textString):
 		self.window = Tk()
 		self.window.title("Welcome!")
-		self.window.geometry("500x340")
+		self.window.geometry("500x500")
 
         
         
         #add bg image
-		background_img = PhotoImage(file = 'img.gif')
+		background_img = PhotoImage(file = 'castle.png')
 		back = Label(self.window, image = background_img)
 		back.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -115,6 +115,7 @@ while dragon.getHP() != 0 and player.getHP() != 0 and home.getTrial() != 99:
 		if diamond.getDiamondStatus() == 0:
 			string = "Oh no! You didn't find the Defense Diamond.\nYou can continue to your next trial, but you might want to try again.\nYou may need it later!"
 		elif diamond.getDiamondStatus() == 1:
+			player.setDefense()
 			string = "Congratulations! You found the Defense Diamond!\nYou may choose your next trial.\nIf you have completed all the trials, you are ready to face the dragon!"
 		home = Home(string)
 	elif home.getTrial() == 2:
@@ -123,6 +124,7 @@ while dragon.getHP() != 0 and player.getHP() != 0 and home.getTrial() != 99:
 		if riddle.getHammer() == 0:
 			string = "Oh no! You did not attain War Hammer.\nYou can continue to your next trial, but you might want to try again.\nYou may need it later!"
 		elif riddle.getHammer() == 1:
+			player.setHammer()
 			string = "Congratulations! You have attained War Hammer!\nYou may choose your next trial.\nIf you have completed all the trials, you are ready to face the dragon!"
 		home = Home(string)
 	elif home.getTrial() == 3:
@@ -131,6 +133,7 @@ while dragon.getHP() != 0 and player.getHP() != 0 and home.getTrial() != 99:
 		if card.getLuckStatus() == 0:
 			string = "Oh no! You did not attain Gambler's Luck.\nYou can continue to your next trial, but you might want to try again.\nYou may need it later!"
 		elif card.getLuckStatus() == 1:
+			player.setLuck()
 			string = "Congratulations! You have attained Gambler's Luck!\nYou may choose your next trial.\nIf you have completed all the trials, you are ready to face the dragon!"
 		home = Home(string)
 	elif home.getTrial() == 4:
