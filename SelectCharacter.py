@@ -52,7 +52,7 @@ class SelectCharacter(object):
 		elif self.v1.get() == '2':
 			self.__type = "Elf"
 			self.__hp = 8
-			self.__atk = 12
+			self.__atk = 10
 		elif self.v1.get() == '3':
 			self.__type = "Knight"
 			self.__hp = 9
