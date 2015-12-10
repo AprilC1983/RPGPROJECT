@@ -1,5 +1,5 @@
 # Name:		DiamondDefense
-# Purpose:	Similar to Battleship, allows user to guess location of Defense Diamond
+# Purpose:	Allows user to click tiles to try and locate  diamond
 # Date:		November 27, 2015
 # Authors:	April May
 #Bugs:		Note to self, remove print statement when finished with testing
